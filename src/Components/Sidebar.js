@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { MdHomeFilled, MdOutlineSubscriptions, MdOutlineVideoLibrary, MdHistory, MdOutlineWatchLater,MdOutlineShoppingBag,MdOutlineMusicNote,MdOutlineSettings,MdOutlinedFlag,MdOutlineHelpOutline } from 'react-icons/md'
 import { AiOutlinePlayCircle, AiOutlineLike } from 'react-icons/ai'
 import { RxVideo } from 'react-icons/rx'
@@ -10,28 +10,32 @@ import {RiFeedbackLine} from 'react-icons/ri'
 import { useSelector } from 'react-redux'
 
 
-const Sidebar = () => {
-//step-6 subscribe the isMenuOpen
-const isMenuOpen= useSelector((store)=>store.app.isMenuOpen)
 
-  if (!isMenuOpen) return (
-    <div>
-       <ul className='py-3 flex flex-col gap-5 '>
-        {/* <Link to="/"> */}
-        <li className='flex flex-col gap-1 items-center text-xs '><MdHomeFilled /><span> Home</span></li>
-        {/* </Link> */}
-        <li className='flex flex-col gap-1 items-center text-xs '><AiOutlinePlayCircle /><span> Shorts</span></li>
-        <li className='flex flex-col gap-1 items-center text-xs pl-2'><MdOutlineSubscriptions /><span>Subscriptions</span></li>
-      </ul>
-    </div>
-  )
+const Sidebar = () => {
+  const isMenuOpen =useSelector((store)=>store.app.isMenuOpen)
+  
+
+ if (!isMenuOpen) return (null)
+  //   <div>
+  //      <ul className='py-3 flex flex-col gap-5 '>
+       
+  //       <li className='flex flex-col gap-1 items-center text-xs cursor-pointer '><MdHomeFilled /><span>  <Link to="/">Home</Link></span></li>
+       
+  //       <li className='flex flex-col gap-1 items-center text-xs '><AiOutlinePlayCircle /><span> Shorts</span></li>
+  //       <li className='flex flex-col gap-1 items-center text-xs pl-2'><MdOutlineSubscriptions /><span>Subscriptions</span></li>
+  //     </ul>
+  //   </div>
+  // )
+
+  
 
   return (
-    <div className='overflow-y-auto h-screen Sidebar '>
+    //absolute slidebar for match 
+    <div className='overflow-y-auto h-screen relative z-10 bg-white  '>  
       {/*-----------------------------------------List 1-------------------------------  */}
       <ul className='border-b'>
         {/* <Link to="/"> */}
-        <li className='flex p-2 items-center px-4 '><MdHomeFilled /><span className='pl-3'> Home</span></li>
+        <li className='flex p-2 items-center px-4 '><MdHomeFilled /><span className='pl-3'><Link to="/">Home</Link></span></li>
         {/* </Link> */}
         <li className='flex p-2 items-center px-4 '><AiOutlinePlayCircle /><span className='pl-3'> Shorts</span></li>
         <li className='flex p-2 items-center px-4'><MdOutlineSubscriptions /><span className='pl-3'>Subscriptions</span></li>
